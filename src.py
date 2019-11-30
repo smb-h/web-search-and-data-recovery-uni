@@ -20,6 +20,7 @@ import pandas as pd
 # read from file
 fl = open("data", "r")
 data = fl.readlines()
+str_data = " ".join(o for o in data)
 
 
 # normaize data
@@ -46,11 +47,16 @@ for line in normalized_data:
 # sort processed data
 processed_data.sort()
 
+# positions
+for wd in processed_data:
+    # regex search index
+    temp = [m.start() for m in re.finditer(wd, data)]
+    print(temp)
+
 # write processed data into csv file
-data_frame = pd.DataFrame(processed_data)
+format_data = {
+    'words': processed_data,
+    'positions': position_list
+}
+data_frame = pd.DataFrame(format_data)
 data_frame.to_csv("processed_data.csv", sep=",", encoding='utf-8')
-
-
-
-# regex search index
-# [m.start() for m in re.finditer('test', 'test test test test')]
