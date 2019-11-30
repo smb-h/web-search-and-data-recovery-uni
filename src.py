@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import __future__
 import hazm
+import re
 
 
 # https://github.com/smb-h/WSDR
@@ -20,19 +21,32 @@ fl = open("data", "r")
 data = fl.readlines()
 
 
-# normaizer
+# normaize data
 normalized_data = []
 normalizer = hazm.Normalizer()
 for line in data:
     normalized_data.append(normalizer.normalize(line.strip()))
 
 
-tokenized_data = []
+stemmer = hazm.Stemmer()
+lemmatizer = hazm.Lemmatizer()
+
+# tokenize, stem and lemmatize data
+processed_data = []
 for line in normalized_data:
     tmp = hazm.word_tokenize(line)
     if tmp:
         for token in tmp:
-            tokenized_data.append(token)
+            curr_word = stemmer.stem(token)
+            # curr_word = lemmatizer.lemmatize(token)
+            processed_data.append(curr_word)
 
 
-print(tokenized_data)
+# write processed data into csv file
+
+
+
+
+
+# regex search index
+# [m.start() for m in re.finditer('test', 'test test test test')]
