@@ -1,6 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
+import __future__
+import hazm
 
+# https://github.com/smb-h/WSDR
+# http://www.sobhe.ir/hazm/
+# https://github.com/sobhe/hazm
 
 
 
@@ -9,3 +14,10 @@ from bs4 import BeautifulSoup
 # print(response.content)
 # soup = BeautifulSoup(response.text, 'html.parser')
 # print(soup.p)
+
+fl = open("data", "r")
+data = fl.readlines()
+
+normalizer = hazm.Normalizer()
+
+print(data)
