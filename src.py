@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-import __future__
 import hazm
+from __future__ import unicode_literals
 
 # https://github.com/smb-h/WSDR
 # http://www.sobhe.ir/hazm/
@@ -13,11 +13,13 @@ import hazm
 # print(response.status_code)
 # print(response.content)
 # soup = BeautifulSoup(response.text, 'html.parser')
-# print(soup.p)
 
+# read from file
 fl = open("data", "r")
 data = fl.readlines()
 
+# normaize
 normalizer = hazm.Normalizer()
+normalized_data = normalizer.normaize(data)
 
-print(data)
+print(normalized_data)
