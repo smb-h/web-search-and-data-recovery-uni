@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import __future__
 import hazm
 import re
+import pandas as pd
 
 
 # https://github.com/smb-h/WSDR
@@ -42,9 +43,12 @@ for line in normalized_data:
             processed_data.append(curr_word)
 
 
+# sort processed data
+processed_data.sort()
+
 # write processed data into csv file
-
-
+data_frame = pd.DataFrame(processed_data)
+data_frame.to_csv("processed_data.csv", sep=",", encoding='utf-8')
 
 
 
