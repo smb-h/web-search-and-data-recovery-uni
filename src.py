@@ -47,11 +47,33 @@ for line in normalized_data:
 # sort processed data
 processed_data.sort()
 
+temp = []
+for i in processed_data:
+    if i not in temp:
+        temp.append(i)
+
+processed_data = temp
+
+position_list = []
 # positions
 for wd in processed_data:
-    # regex search index
-    temp = [m.start() for m in re.finditer(wd, data)]
-    print(temp)
+    counter = str_data.count(wd)
+    pos = 0
+    tmp = []
+    for count in range(counter):
+        indx = str_data.find(wd, pos)
+        pos += indx + len(wd)
+        if pos not in tmp:
+            tmp.append(pos)
+    position_list.append(tmp)
+
+# position_list_formated = []
+# for i in position_list:
+#     tmp = ""
+#     for j in i:
+#         tmp = tmp + str(j) + ", "
+#     position_list_formated.append(tmp)
+
 
 # write processed data into csv file
 format_data = {
@@ -60,3 +82,5 @@ format_data = {
 }
 data_frame = pd.DataFrame(format_data)
 data_frame.to_csv("processed_data.csv", sep=",", encoding='utf-8')
+
+
