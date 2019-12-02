@@ -63,8 +63,8 @@ for wd in processed_data:
     for count in range(counter):
         indx = str_data.find(wd, pos)
         pos += indx + len(wd)
-        if pos not in tmp:
-            tmp.append(pos)
+        if indx not in tmp:
+            tmp.append(indx)
     position_list.append(tmp)
 
 # position_list_formated = []
