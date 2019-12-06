@@ -40,7 +40,7 @@ for line in normalized_data:
     if tmp:
         for token in tmp:
             curr_word = stemmer.stem(token)
-            # curr_word = lemmatizer.lemmatize(token)
+            curr_word = lemmatizer.lemmatize(token)
             processed_data.append(curr_word)
 
 
