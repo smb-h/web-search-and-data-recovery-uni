@@ -4,7 +4,7 @@ chardet==3.0.4
 hazm==0.7.0
 idna==2.8
 libwapiti==0.2.1
-nltk==3.4.5
+nltk==3.6.5
 numpy==1.17.4
 pandas==0.25.3
 python-dateutil==2.8.1
