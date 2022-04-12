@@ -21,7 +21,7 @@ def search_it(word):
     tmp = []
 
     if '"' in word:
-        for count in range(counter):
+        for _ in range(counter):
             indx = str_data.find(wd, pos)
             pos += indx + len(wd)
             if indx not in tmp:
@@ -59,10 +59,11 @@ def search_it(word):
         flag = False
         for wd0 in wds:
             wd = wd0.strip()
-            if wd in str_data or wd in processed_data:
-                flag = flag or True
-            else:
-                flag = flag or False
+            flag = (
+                flag or True
+                if wd in str_data or wd in processed_data
+                else flag or False
+            )
 
         if flag:
             rs.append("YES")
@@ -85,11 +86,10 @@ def search_it(word):
         else:
             rs.append("NO")
 
+    elif wd in processed_data:
+        rs.append("YES")
     else:
-        if wd in processed_data:
-            rs.append("YES")
-        else:
-            rs.append("NO")
+        rs.append("NO")
 
     return rs
 
@@ -107,10 +107,9 @@ def main():
         tmp = input("Search : ")
         if tmp == "0":
             break
-        else:
-            rs = search_it(tmp)
-            for result in rs:
-                print(result)
+        rs = search_it(tmp)
+        for result in rs:
+            print(result)
 
 
 
