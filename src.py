@@ -20,24 +20,18 @@ import pandas as pd
 # read from file
 fl = open("data", "r")
 data = fl.readlines()
-str_data = " ".join(o for o in data)
+str_data = " ".join(data)
 
 
-# normaize data
-normalized_data = []
 normalizer = hazm.Normalizer()
-for line in data:
-    normalized_data.append(normalizer.normalize(line.strip()))
-
-
+normalized_data = [normalizer.normalize(line.strip()) for line in data]
 stemmer = hazm.Stemmer()
 lemmatizer = hazm.Lemmatizer()
 
 # tokenize, stem and lemmatize data
 processed_data = []
 for line in normalized_data:
-    tmp = hazm.word_tokenize(line)
-    if tmp:
+    if tmp := hazm.word_tokenize(line):
         for token in tmp:
             curr_word = stemmer.stem(token)
             curr_word = lemmatizer.lemmatize(token)
@@ -60,7 +54,7 @@ for wd in processed_data:
     counter = str_data.count(wd)
     pos = 0
     tmp = []
-    for count in range(counter):
+    for _ in range(counter):
         indx = str_data.find(wd, pos)
         pos += indx + len(wd)
         if indx not in tmp:
