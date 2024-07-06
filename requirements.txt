@@ -1,5 +1,5 @@
 beautifulsoup4==4.8.1
-certifi==2023.7.22
+certifi==2024.7.4
 chardet==3.0.4
 hazm==0.7.0
 idna==3.7
